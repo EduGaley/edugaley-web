@@ -56,10 +56,13 @@
                 <span class="text-2xl font-bold text-brand-blue tracking-tight">Edu<span class="text-brand-green">Galey</span></span>
             </div>
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="#home" class="font-medium text-gray-600 hover:text-brand-green transition">Home</a>
                 <a href="#countries" class="font-medium text-gray-600 hover:text-brand-green transition">Destinations</a>
-                <a href="#process" class="font-medium text-gray-600 hover:text-brand-green transition">Our Process</a>
+                <a href="#process" class="font-medium text-gray-600 hover:text-brand-green transition">Process</a>
+                <a href="#services" class="font-medium text-gray-600 hover:text-brand-green transition">Services</a>
+                <a href="#finance" class="font-medium text-gray-600 hover:text-brand-green transition">Funding</a>
+                <a href="#faq" class="font-medium text-gray-600 hover:text-brand-green transition">FAQ</a>
                 <a href="#contact" class="bg-brand-blue text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-900 transition shadow-md hover:shadow-xl transform active:scale-95">Get Free Consultation</a>
             </div>
             <!-- Mobile Menu Button -->
@@ -77,8 +80,11 @@
     <div x-show="mobileMenuOpen" x-collapse class="md:hidden bg-white border-t px-4 pt-2 pb-4 space-y-2 shadow-inner" style="display: none;">
         <a href="#home" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Home</a>
         <a href="#countries" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Destinations</a>
-        <a href="#process" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Our Process</a>
-        <a href="#contact" @click="mobileMenuOpen = false" class="block text-center bg-brand-blue text-white px-4 py-2 rounded font-medium transition active:scale-95">Get Free Consultation</a>
+        <a href="#process" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Process</a>
+        <a href="#services" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Services</a>
+        <a href="#finance" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Funding</a>
+        <a href="#faq" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">FAQ</a>
+        <a href="#contact" @click="mobileMenuOpen = false" class="block text-center bg-brand-blue text-white px-4 py-2 rounded font-medium transition active:scale-95 mt-4">Get Free Consultation</a>
     </div>
 </nav>
 
@@ -314,7 +320,7 @@
 </section>
 
 <!-- 2. Beyond Admissions Section -->
-<section class="py-24 bg-brand-light border-t border-gray-200">
+<section id="services" class="py-24 bg-brand-light border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Beyond Admissions: The 360° Ecosystem</h2>
@@ -347,7 +353,7 @@
 </section>
 
 <!-- 3. Financial Support & Scholarships -->
-<section class="py-20 bg-gradient-to-br from-brand-blue to-blue-900 text-white relative overflow-hidden">
+<section id="finance" class="py-20 bg-gradient-to-br from-brand-blue to-blue-900 text-white relative overflow-hidden">
     <!-- Decorative background -->
     <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
     <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-brand-green rounded-full filter blur-3xl opacity-30"></div>
@@ -436,7 +442,7 @@
 </section>
 
 <!-- 4. Interactive FAQ Section (Accordion) -->
-<section class="py-24 bg-brand-light">
+<section id="faq" class="py-24 bg-brand-light">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
