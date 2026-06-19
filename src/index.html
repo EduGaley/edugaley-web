@@ -20,6 +20,7 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 30s linear infinite',
                     },
                     keyframes: {
                         float: {
@@ -31,13 +32,18 @@
                             '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
                             '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Alpine.js for simple mobile menu toggle -->
+    <!-- Alpine.js Plugins & Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-brand-light text-gray-800 font-sans selection:bg-brand-green selection:text-white">
@@ -77,7 +83,7 @@
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+<section id="home" class="pt-32 pb-20 md:pt-40 md:pb-24 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="relative z-10">
@@ -94,18 +100,48 @@
                 </div>
             </div>
             <div class="relative hidden md:block animate-float">
-                <!-- Slick Animated Blob behind the box -->
                 <div class="absolute top-0 -left-4 w-72 h-72 bg-brand-green rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
                 <div class="absolute top-0 -right-4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
                 <div class="absolute -bottom-8 left-20 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" style="animation-delay: 4s"></div>
 
-                <!-- Floating Stats Box -->
                 <div class="w-full h-[450px] bg-gradient-to-tr from-brand-blue to-blue-800 rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center text-white p-8 border border-blue-900">
                     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                     <div class="text-center z-10">
                         <p class="text-7xl font-black mb-2 text-brand-green drop-shadow-lg">98%</p>
-                        <p class="text-xl font-medium tracking-wide text-blue-100">Visa Success Rate <br>for 2025 Intakes</p>
+                        <p class="text-xl font-medium tracking-wide text-blue-100">Visa Success Rate <br>for 2026 Intakes</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 1. University Partners Marquee (Trust Badge) -->
+<section class="py-8 bg-white border-y border-gray-100 overflow-hidden flex flex-col md:flex-row items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex w-full items-center">
+        <div class="hidden md:block flex-shrink-0 mr-12 z-10 bg-white pr-4">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Placing students in</p>
+        </div>
+        <!-- Infinite Scroll Container -->
+        <div class="flex overflow-hidden relative w-full mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent)">
+            <div class="flex animate-scroll whitespace-nowrap items-center w-max">
+                <!-- Set 1 -->
+                <div class="flex items-center space-x-12 md:space-x-20 px-6 md:px-10">
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Sydney Uni</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">NYU</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">TU Munich</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">NUS Singapore</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Toronto U</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Auckland Uni</span>
+                </div>
+                <!-- Set 2 (Duplicate for seamless looping) -->
+                <div class="flex items-center space-x-12 md:space-x-20 px-6 md:px-10">
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Sydney Uni</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">NYU</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">TU Munich</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">NUS Singapore</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Toronto U</span>
+                    <span class="text-xl md:text-2xl font-black text-gray-300 hover:text-gray-400 transition cursor-default">Auckland Uni</span>
                 </div>
             </div>
         </div>
@@ -121,7 +157,6 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-            <!-- Image 1 -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80" alt="NYU Campus" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -131,7 +166,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image 2 -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&q=80" alt="University of Melbourne" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -141,7 +175,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image 3 (Replaced UK with Singapore) -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80" alt="NUS Singapore" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -151,7 +184,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image 4 -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=800&q=80" alt="TU Munich" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -161,7 +193,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image 5 -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="University of Toronto" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -171,7 +202,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image 6 (Fixed New Zealand URL) -->
             <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
                 <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=800&q=80" alt="University of Auckland" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -193,9 +223,8 @@
             <p class="text-gray-600">We specialize in alignment with the best global academic institutions offering lucrative post-study work paths.</p>
         </div>
 
-        <!-- Changed to 3 columns on large screens so the 5 cards wrap neatly -->
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- USA -->
+            <!-- Destination Cards -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
                 <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇺🇸</div>
                 <h3 class="text-xl font-bold text-brand-blue mb-2">USA</h3>
@@ -205,7 +234,6 @@
                     <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> Up to 3 years STEM OPT</li>
                 </ul>
             </div>
-            <!-- Australia -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
                 <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇦🇺</div>
                 <h3 class="text-xl font-bold text-brand-blue mb-2">Australia</h3>
@@ -215,7 +243,6 @@
                     <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> 2–4 years Visa</li>
                 </ul>
             </div>
-            <!-- Germany -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
                 <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇩🇪</div>
                 <h3 class="text-xl font-bold text-brand-blue mb-2">Germany</h3>
@@ -225,7 +252,6 @@
                     <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> 18-month seeker visa</li>
                 </ul>
             </div>
-            <!-- New Zealand -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
                 <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇳🇿</div>
                 <h3 class="text-xl font-bold text-brand-blue mb-2">New Zealand</h3>
@@ -235,7 +261,6 @@
                     <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> Up to 3 years open visa</li>
                 </ul>
             </div>
-            <!-- Singapore -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
                 <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇸🇬</div>
                 <h3 class="text-xl font-bold text-brand-blue mb-2">Singapore</h3>
@@ -258,7 +283,6 @@
         </div>
 
         <div class="grid md:grid-cols-4 gap-8 relative">
-            <!-- Connecting Line for Desktop -->
             <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
 
             <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
@@ -282,56 +306,128 @@
             <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
                 <span class="text-5xl font-black text-green-100 absolute -top-4 -right-2 opacity-50">04</span>
                 <div class="w-10 h-10 bg-brand-green rounded-full mb-4 flex items-center justify-center text-white font-bold shadow-md">4</div>
-                <h4 class="text-lg font-bold text-brand-blue mb-2">Visa & Pre-Departure</h4>
-                <p class="text-sm text-gray-600 leading-relaxed">Mock visa interviews, absolute document verification, and block account setups.</p>
+                <h4 class="text-lg font-bold text-brand-blue mb-2">Visa Processing</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">Mock visa interviews, precise document verification, and embassy interview scheduling.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Beyond Admissions Section -->
+<section class="py-24 bg-brand-light border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Beyond Admissions: The 360° Ecosystem</h2>
+            <p class="text-gray-600">Getting the offer letter is just the beginning. We provide a complete support system to ensure you land safely and settle in smoothly.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:border-brand-green transition">
+                <div class="w-12 h-12 bg-blue-50 text-2xl flex items-center justify-center rounded-xl mb-4">💱</div>
+                <h4 class="font-bold text-brand-blue mb-2">Forex & Block Accounts</h4>
+                <p class="text-xs text-gray-500">Fast, lowest-margin currency exchange and seamless setup of mandatory blocked accounts for Europe.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:border-brand-green transition">
+                <div class="w-12 h-12 bg-blue-50 text-2xl flex items-center justify-center rounded-xl mb-4">🛏️</div>
+                <h4 class="font-bold text-brand-blue mb-2">Accommodation Prep</h4>
+                <p class="text-xs text-gray-500">Connections with verified student housing networks to secure your lease before you even board your flight.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:border-brand-green transition">
+                <div class="w-12 h-12 bg-blue-50 text-2xl flex items-center justify-center rounded-xl mb-4">✈️</div>
+                <h4 class="font-bold text-brand-blue mb-2">Flight & Travel</h4>
+                <p class="text-xs text-gray-500">Access to exclusive student baggage allowances and discounted airfares through our travel partners.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:border-brand-green transition">
+                <div class="w-12 h-12 bg-blue-50 text-2xl flex items-center justify-center rounded-xl mb-4">🤝</div>
+                <h4 class="font-bold text-brand-blue mb-2">Pre-Departure Briefings</h4>
+                <p class="text-xs text-gray-500">Connect with fellow students flying to the same city and learn crucial cultural and academic norms.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Financial Support & Scholarships -->
+<section class="py-20 bg-gradient-to-br from-brand-blue to-blue-900 text-white relative overflow-hidden">
+    <!-- Decorative background -->
+    <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-brand-green rounded-full filter blur-3xl opacity-30"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-black mb-6">Financing Your Dream Should Not Be a Nightmare.</h2>
+                <p class="text-blue-100 mb-8 leading-relaxed">
+                    We understand that studying abroad involves significant family investments. Our dedicated financial counselors ensure you have access to the most favorable capital.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-brand-green mr-3 text-xl">✅</span>
+                        <div>
+                            <strong class="block text-white">Education Loan Assistance</strong>
+                            <span class="text-sm text-blue-200">Partnerships with top Indian NBFCs and banks for collateral and non-collateral loans.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-brand-green mr-3 text-xl">✅</span>
+                        <div>
+                            <strong class="block text-white">Scholarship Mapping</strong>
+                            <span class="text-sm text-blue-200">We aggressively identify and apply for university-specific grants, fee waivers, and merit scholarships on your behalf.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4 text-center">We work with leading financial partners:</h3>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 font-bold tracking-wide text-gray-200">HDFC Credila</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 font-bold tracking-wide text-gray-200">Avanse</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 font-bold tracking-wide text-gray-200">Prodigy Finance</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 font-bold tracking-wide text-gray-200">SBI Scholar</div>
+                </div>
+                <a href="#contact" class="mt-6 block w-full bg-brand-green text-center py-3 rounded-xl font-bold hover:bg-emerald-600 transition shadow-lg">Check Loan Eligibility</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Testimonials Section -->
-<section class="py-24 bg-brand-blue text-white overflow-hidden">
+<section class="py-24 bg-white overflow-hidden border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-12">Success Stories</h2>
+        <h2 class="text-3xl font-bold text-brand-blue mb-12">Success Stories</h2>
 
         <!-- Alpine.js Carousel Logic -->
         <div x-data="{ activeSlide: 1, slides: [1, 2, 3], loop() { setInterval(() => { this.activeSlide = this.activeSlide === this.slides.length ? 1 : this.activeSlide + 1 }, 5000) } }"
              x-init="loop()"
-             class="relative max-w-4xl mx-auto bg-blue-950 rounded-3xl p-8 md:p-12 shadow-2xl border border-blue-900">
+             class="relative max-w-4xl mx-auto bg-brand-light rounded-3xl p-8 md:p-12 shadow-md border border-gray-100">
 
-            <!-- Slide 1 -->
             <div x-show="activeSlide === 1" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12">
-                <p class="text-xl md:text-2xl text-blue-100 italic mb-8 font-light leading-relaxed">"EduGaley made my transition to Germany seamless. From blocking my account to the visa interview prep, they handled everything. I'm now studying at TU Munich!"</p>
-                <h4 class="font-bold text-brand-green text-lg">Rahul Sharma</h4>
-                <p class="text-sm text-blue-300">MS in Computer Science, TU Munich 🇩🇪</p>
+                <p class="text-xl md:text-2xl text-gray-700 italic mb-8 font-light leading-relaxed">"EduGaley made my transition to Germany seamless. From blocking my account to the visa interview prep, they handled everything. I'm now studying at TU Munich!"</p>
+                <h4 class="font-bold text-brand-blue text-lg">Rahul Sharma</h4>
+                <p class="text-sm text-gray-500">MS in Computer Science, TU Munich 🇩🇪</p>
             </div>
 
-            <!-- Slide 2 -->
             <div x-show="activeSlide === 2" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12" style="display: none;">
-                <p class="text-xl md:text-2xl text-blue-100 italic mb-8 font-light leading-relaxed">"I was confused between Australia and Canada. The counselors mapped out the ROI and PR pathways clearly. Highly recommend their transparent approach."</p>
-                <h4 class="font-bold text-brand-green text-lg">Priya Patel</h4>
-                <p class="text-sm text-blue-300">Master of Data Science, UNSW 🇦🇺</p>
+                <p class="text-xl md:text-2xl text-gray-700 italic mb-8 font-light leading-relaxed">"I was confused between Australia and Canada. The counselors mapped out the ROI and PR pathways clearly. Highly recommend their transparent approach."</p>
+                <h4 class="font-bold text-brand-blue text-lg">Priya Patel</h4>
+                <p class="text-sm text-gray-500">Master of Data Science, UNSW 🇦🇺</p>
             </div>
 
-            <!-- Slide 3 -->
             <div x-show="activeSlide === 3" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12" style="display: none;">
-                <p class="text-xl md:text-2xl text-blue-100 italic mb-8 font-light leading-relaxed">"Got my F1 Visa approved in the very first attempt! Their mock interview sessions were exactly like the real thing at the Mumbai consulate."</p>
-                <h4 class="font-bold text-brand-green text-lg">Aditya Verma</h4>
-                <p class="text-sm text-blue-300">MBA, Boston University 🇺🇸</p>
+                <p class="text-xl md:text-2xl text-gray-700 italic mb-8 font-light leading-relaxed">"Got my F1 Visa approved in the very first attempt! Their mock interview sessions were exactly like the real thing at the Mumbai consulate."</p>
+                <h4 class="font-bold text-brand-blue text-lg">Aditya Verma</h4>
+                <p class="text-sm text-gray-500">MBA, Boston University 🇺🇸</p>
             </div>
 
-            <!-- Invisible spacer to maintain height -->
             <div class="invisible flex flex-col items-center justify-center">
                 <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Placeholder text to maintain container height so the layout doesn't jump. Make this as long as your longest testimonial."</p>
                 <h4 class="font-bold text-lg">Name</h4>
                 <p class="text-sm">Subtitle</p>
             </div>
 
-            <!-- Navigation Dots -->
             <div class="flex justify-center space-x-3 mt-4 relative z-10">
                 <template x-for="slide in slides">
                     <button @click="activeSlide = slide"
-                            :class="{'bg-brand-green w-8': activeSlide === slide, 'bg-blue-800 w-3 hover:bg-blue-600': activeSlide !== slide}"
+                            :class="{'bg-brand-green w-8': activeSlide === slide, 'bg-gray-300 w-3 hover:bg-gray-400': activeSlide !== slide}"
                             class="h-3 rounded-full transition-all duration-300 focus:outline-none"></button>
                 </template>
             </div>
@@ -339,11 +435,82 @@
     </div>
 </section>
 
+<!-- 4. Interactive FAQ Section (Accordion) -->
+<section class="py-24 bg-brand-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+            <p class="text-gray-600">Clear your doubts before you take the next big step.</p>
+        </div>
+
+        <div class="space-y-4" x-data="{ activeAccordion: null }">
+            <!-- FAQ 1 -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-brand-green">
+                <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full flex justify-between items-center p-6 focus:outline-none">
+                    <span class="font-bold text-brand-blue text-left">Do you charge a consultation fee?</span>
+                    <span class="text-brand-green transform transition-transform duration-300" :class="activeAccordion === 1 ? 'rotate-180' : ''">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </button>
+                <div x-show="activeAccordion === 1" x-collapse>
+                    <div class="p-6 pt-0 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+                        No. Our primary consultation and profile evaluation are completely free of charge. We maintain direct partnerships with universities globally, meaning there are absolutely no hidden charges for you.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-brand-green">
+                <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full flex justify-between items-center p-6 focus:outline-none">
+                    <span class="font-bold text-brand-blue text-left">Can I work part-time while studying?</span>
+                    <span class="text-brand-green transform transition-transform duration-300" :class="activeAccordion === 2 ? 'rotate-180' : ''">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </button>
+                <div x-show="activeAccordion === 2" x-collapse>
+                    <div class="p-6 pt-0 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+                        Yes! Almost all popular study destinations like the USA, Australia, Germany, and New Zealand allow international students to work up to 20 hours per week during the semester and full-time during scheduled breaks.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-brand-green">
+                <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full flex justify-between items-center p-6 focus:outline-none">
+                    <span class="font-bold text-brand-blue text-left">What is the minimum IELTS/TOEFL score required?</span>
+                    <span class="text-brand-green transform transition-transform duration-300" :class="activeAccordion === 3 ? 'rotate-180' : ''">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </button>
+                <div x-show="activeAccordion === 3" x-collapse>
+                    <div class="p-6 pt-0 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+                        Requirements vary heavily by course and university. Generally, a minimum IELTS score of 6.0 for Undergraduates and 6.5 for Postgraduates is required. Some universities also accept PTE and Duolingo.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-brand-green">
+                <button @click="activeAccordion = activeAccordion === 4 ? null : 4" class="w-full flex justify-between items-center p-6 focus:outline-none">
+                    <span class="font-bold text-brand-blue text-left">How long does the entire admission process take?</span>
+                    <span class="text-brand-green transform transition-transform duration-300" :class="activeAccordion === 4 ? 'rotate-180' : ''">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </button>
+                <div x-show="activeAccordion === 4" x-collapse>
+                    <div class="p-6 pt-0 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+                        From profile evaluation to receiving your visa, the process usually takes 6 to 9 months. It's highly recommended to start your application at least a year before your targeted intake.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Contact Form Section -->
-<section id="contact" class="py-24 bg-brand-light">
+<section id="contact" class="py-24 bg-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-brand-blue text-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden border border-blue-900 transform hover:shadow-brand-green/20 transition-shadow duration-500">
-            <!-- Background Decoration -->
             <div class="absolute top-0 right-0 w-96 h-96 bg-brand-green rounded-full mix-blend-overlay filter blur-3xl opacity-30 pointer-events-none"></div>
 
             <div class="relative z-10 grid md:grid-cols-5 gap-12 items-center">
@@ -359,7 +526,6 @@
                 </div>
 
                 <div class="md:col-span-3 bg-white text-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl">
-                    <!-- Formspree Integration Point -->
                     <form action="https://formspree.io/f/mlgkqrej" method="POST" class="space-y-5">
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Full Name</label>
