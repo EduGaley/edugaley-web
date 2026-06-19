@@ -12,37 +12,53 @@
                 extend: {
                     colors: {
                         brand: {
-                            blue: '#1e3a8a',
-                            orange: '#ea580c',
-                            light: '#f8fafc'
+                            black: '#0a0a0a',   /* Deep Charcoal Black */
+                            green: '#10b981',   /* Emerald Green */
+                            light: '#f0fdf4'    /* Ultra-light green tint */
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Alpine.js for simple mobile menu toggle (No heavy JS frameworks needed) -->
+    <!-- Alpine.js for simple mobile menu toggle -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-brand-light text-gray-800 font-sans">
+<body class="bg-brand-light text-gray-800 font-sans selection:bg-brand-green selection:text-white">
 
 <!-- Navigation -->
-<nav class="bg-white shadow-md fixed w-full z-50 top-0 left-0" x-data="{ mobileMenuOpen: false }">
+<nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 top-0 left-0 transition-all duration-300" x-data="{ mobileMenuOpen: false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
             <div class="flex items-center">
-                <span class="text-2xl font-bold text-brand-blue tracking-tight">Edu<span class="text-brand-orange">Galey</span></span>
+                <span class="text-2xl font-bold text-brand-black tracking-tight">Edu<span class="text-brand-green">Galey</span></span>
             </div>
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="font-medium text-gray-600 hover:text-brand-blue transition">Home</a>
-                <a href="#countries" class="font-medium text-gray-600 hover:text-brand-blue transition">Destinations</a>
-                <a href="#process" class="font-medium text-gray-600 hover:text-brand-blue transition">Our Process</a>
-                <a href="#contact" class="bg-brand-blue text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-900 transition shadow-sm">Get Free Consultation</a>
+                <a href="#home" class="font-medium text-gray-600 hover:text-brand-green transition">Home</a>
+                <a href="#countries" class="font-medium text-gray-600 hover:text-brand-green transition">Destinations</a>
+                <a href="#process" class="font-medium text-gray-600 hover:text-brand-green transition">Our Process</a>
+                <a href="#contact" class="bg-brand-black text-white px-5 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition shadow-md hover:shadow-xl transform active:scale-95">Get Free Consultation</a>
             </div>
             <!-- Mobile Menu Button -->
             <div class="flex items-center md:hidden">
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-brand-blue focus:outline-none">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-brand-green focus:outline-none transition">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -52,38 +68,116 @@
         </div>
     </div>
     <!-- Mobile Menu Stack -->
-    <div x-show="mobileMenuOpen" class="md:hidden bg-white border-t px-4 pt-2 pb-4 space-y-2 shadow-inner" style="display: none;">
-        <a href="#home" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded font-medium">Home</a>
-        <a href="#countries" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded font-medium">Destinations</a>
-        <a href="#process" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded font-medium">Our Process</a>
-        <a href="#contact" @click="mobileMenuOpen = false" class="block text-center bg-brand-blue text-white px-4 py-2 rounded font-medium">Get Free Consultation</a>
+    <div x-show="mobileMenuOpen" x-collapse class="md:hidden bg-white border-t px-4 pt-2 pb-4 space-y-2 shadow-inner" style="display: none;">
+        <a href="#home" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Home</a>
+        <a href="#countries" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Destinations</a>
+        <a href="#process" @click="mobileMenuOpen = false" class="block px-3 py-2 text-gray-600 hover:bg-green-50 hover:text-brand-green rounded font-medium transition">Our Process</a>
+        <a href="#contact" @click="mobileMenuOpen = false" class="block text-center bg-brand-black text-white px-4 py-2 rounded font-medium transition active:scale-95">Get Free Consultation</a>
     </div>
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-blue-50 via-white to-orange-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-green-50 via-white to-gray-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block bg-orange-100 text-brand-orange text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4">Your Global Future Awaits</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-brand-blue leading-tight mb-6">
-                    Study Abroad. <br><span class="text-brand-orange">Simpler, Faster, Surer.</span>
+            <div class="relative z-10">
+                <span class="inline-block bg-green-100 text-brand-green text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 shadow-sm border border-green-200">Your Global Future Awaits</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-brand-black leading-tight mb-6">
+                    Study Abroad. <br><span class="text-brand-green">Simpler, Faster, Surer.</span>
                 </h1>
                 <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
                     Helping ambitious Indian students secure admissions and visas for top universities globally. Get end-to-end expert guidance at zero hidden costs.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#contact" class="bg-brand-blue text-white text-center px-8 py-4 rounded-xl font-semibold hover:bg-blue-900 transition shadow-lg shadow-blue-900/20">Book Profile Evaluation</a>
-                    <a href="#countries" class="bg-white border-2 border-gray-200 text-gray-700 text-center px-8 py-4 rounded-xl font-semibold hover:border-brand-blue hover:text-brand-blue transition">Explore Countries</a>
+                    <a href="#contact" class="bg-brand-black text-white text-center px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg shadow-black/20 hover:shadow-xl transform hover:-translate-y-1 active:scale-95">Book Profile Evaluation</a>
+                    <a href="#countries" class="bg-white border-2 border-gray-200 text-gray-700 text-center px-8 py-4 rounded-xl font-semibold hover:border-brand-green hover:text-brand-green transition-all duration-300 transform hover:-translate-y-1 active:scale-95">Explore Countries</a>
                 </div>
             </div>
-            <div class="relative hidden md:block">
-                <!-- Clean geometric design placeholder that looks highly modern -->
-                <div class="w-full h-[450px] bg-gradient-to-tr from-brand-blue to-blue-700 rounded-3xl shadow-2xl relative overflow-hidden flex items-center justify-center text-white p-8">
-                    <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-brand-orange rounded-full opacity-20 blur-2xl"></div>
+            <div class="relative hidden md:block animate-float">
+                <!-- Slick Animated Blob behind the box -->
+                <div class="absolute top-0 -left-4 w-72 h-72 bg-brand-green rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+                <div class="absolute top-0 -right-4 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
+                <div class="absolute -bottom-8 left-20 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" style="animation-delay: 4s"></div>
+
+                <!-- Floating Stats Box -->
+                <div class="w-full h-[450px] bg-gradient-to-tr from-brand-black to-gray-800 rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center text-white p-8 border border-gray-800">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                     <div class="text-center z-10">
-                        <p class="text-6xl font-black mb-2 text-brand-orange">98%</p>
-                        <p class="text-xl font-medium tracking-wide text-blue-100">Visa Success Rate for 2025 Intakes</p>
+                        <p class="text-7xl font-black mb-2 text-brand-green drop-shadow-lg">98%</p>
+                        <p class="text-xl font-medium tracking-wide text-gray-300">Visa Success Rate <br>for 2025 Intakes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Campus Gallery Section -->
+<section class="py-24 bg-brand-black text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Campuses You Could Call Home</h2>
+            <p class="text-gray-400">Glimpses of partner universities across the globe.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+            <!-- Image 1 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80" alt="NYU Campus" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">USA</span>
+                        <span class="text-white font-semibold text-lg">NYU, New York</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image 2 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&q=80" alt="University of Melbourne" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">Australia</span>
+                        <span class="text-white font-semibold text-lg">Univ of Melbourne</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image 3 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&q=80" alt="Oxford University" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">UK</span>
+                        <span class="text-white font-semibold text-lg">Oxford University</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image 4 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=800&q=80" alt="TU Munich" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">Germany</span>
+                        <span class="text-white font-semibold text-lg">TU Munich</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image 5 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="University of Toronto" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">Canada</span>
+                        <span class="text-white font-semibold text-lg">Univ of Toronto</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image 6 -->
+            <div class="relative overflow-hidden rounded-2xl group aspect-video md:aspect-square shadow-lg">
+                <img src="https://images.unsplash.com/photo-1588001400949-01255e2d63ab?w=800&q=80" alt="University of Auckland" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm tracking-wider uppercase block mb-1">New Zealand</span>
+                        <span class="text-white font-semibold text-lg">Univ of Auckland</span>
                     </div>
                 </div>
             </div>
@@ -92,52 +186,52 @@
 </section>
 
 <!-- Destinations Section -->
-<section id="countries" class="py-20 bg-white">
+<section id="countries" class="py-24 bg-brand-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Top Global Study Destinations</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-brand-black mb-4">Top Global Study Destinations</h2>
             <p class="text-gray-600">We specialize in alignment with the best global academic institutions offering lucrative post-study work paths.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- USA -->
-            <div class="border border-gray-100 rounded-2xl p-6 hover:shadow-xl transition bg-brand-light">
-                <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center font-bold text-xl mb-6">🇺🇸</div>
-                <h3 class="text-xl font-bold text-brand-blue mb-2">USA</h3>
-                <p class="text-sm text-gray-600 mb-4">The ultimate destination for STEM, tech innovation, and high-ROI careers.</p>
-                <ul class="text-xs text-gray-500 space-y-2 border-t pt-4">
-                    <li>⚡ <strong>Intakes:</strong> Fall (Aug), Spring (Jan)</li>
-                    <li>💼 <strong>Work Rights:</strong> Up to 3 years STEM OPT</li>
+            <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
+                <div class="w-14 h-14 bg-gray-50 text-brand-black rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇺🇸</div>
+                <h3 class="text-xl font-bold text-brand-black mb-2">USA</h3>
+                <p class="text-sm text-gray-600 mb-6">The ultimate destination for STEM, tech innovation, and high-ROI careers.</p>
+                <ul class="text-xs text-gray-500 space-y-3 border-t pt-6">
+                    <li class="flex items-center"><span class="text-brand-green mr-2">⚡</span> <strong>Intakes:</strong> Fall (Aug), Spring (Jan)</li>
+                    <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> Up to 3 years STEM OPT</li>
                 </ul>
             </div>
             <!-- Australia -->
-            <div class="border border-gray-100 rounded-2xl p-6 hover:shadow-xl transition bg-brand-light">
-                <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">🇦🇺</div>
-                <h3 class="text-xl font-bold text-brand-blue mb-2">Australia</h3>
-                <p class="text-sm text-gray-600 mb-4">World-class student cities with highly favorable post-study work streams.</p>
-                <ul class="text-xs text-gray-500 space-y-2 border-t pt-4">
-                    <li>⚡ <strong>Intakes:</strong> Feb, July, November</li>
-                    <li>💼 <strong>Work Rights:</strong> 2–4 years Temporary Graduate Visa</li>
+            <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
+                <div class="w-14 h-14 bg-gray-50 text-brand-black rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇦🇺</div>
+                <h3 class="text-xl font-bold text-brand-black mb-2">Australia</h3>
+                <p class="text-sm text-gray-600 mb-6">World-class student cities with highly favorable post-study work streams.</p>
+                <ul class="text-xs text-gray-500 space-y-3 border-t pt-6">
+                    <li class="flex items-center"><span class="text-brand-green mr-2">⚡</span> <strong>Intakes:</strong> Feb, July, Nov</li>
+                    <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> 2–4 years Visa</li>
                 </ul>
             </div>
             <!-- Germany -->
-            <div class="border border-gray-100 rounded-2xl p-6 hover:shadow-xl transition bg-brand-light">
-                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">🇩🇪</div>
-                <h3 class="text-xl font-bold text-brand-blue mb-2">Germany</h3>
-                <p class="text-sm text-gray-600 mb-4">Zero/Low tuition fees at public universities and strong industrial exposure.</p>
-                <ul class="text-xs text-gray-500 space-y-2 border-t pt-4">
-                    <li>⚡ <strong>Intakes:</strong> Winter (Oct), Summer (Apr)</li>
-                    <li>💼 <strong>Work Rights:</strong> 18-month job seeker visa</li>
+            <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
+                <div class="w-14 h-14 bg-gray-50 text-brand-black rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇩🇪</div>
+                <h3 class="text-xl font-bold text-brand-black mb-2">Germany</h3>
+                <p class="text-sm text-gray-600 mb-6">Zero/Low tuition fees at public universities and strong industrial exposure.</p>
+                <ul class="text-xs text-gray-500 space-y-3 border-t pt-6">
+                    <li class="flex items-center"><span class="text-brand-green mr-2">⚡</span> <strong>Intakes:</strong> Winter (Oct), Summer (Apr)</li>
+                    <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> 18-month seeker visa</li>
                 </ul>
             </div>
             <!-- New Zealand -->
-            <div class="border border-gray-100 rounded-2xl p-6 hover:shadow-xl transition bg-brand-light">
-                <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center font-bold text-xl mb-6">🇳🇿</div>
-                <h3 class="text-xl font-bold text-brand-blue mb-2">New Zealand</h3>
-                <p class="text-sm text-gray-600 mb-4">Unmatched safety, high quality of life, and straight-forward pathways to residency.</p>
-                <ul class="text-xs text-gray-500 space-y-2 border-t pt-4">
-                    <li>⚡ <strong>Intakes:</strong> Feb, July</li>
-                    <li>💼 <strong>Work Rights:</strong> Up to 3 years open work visa</li>
+            <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-default">
+                <div class="w-14 h-14 bg-gray-50 text-brand-black rounded-xl flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">🇳🇿</div>
+                <h3 class="text-xl font-bold text-brand-black mb-2">New Zealand</h3>
+                <p class="text-sm text-gray-600 mb-6">Unmatched safety, high quality of life, and straight-forward residency paths.</p>
+                <ul class="text-xs text-gray-500 space-y-3 border-t pt-6">
+                    <li class="flex items-center"><span class="text-brand-green mr-2">⚡</span> <strong>Intakes:</strong> Feb, July</li>
+                    <li class="flex items-center"><span class="text-brand-green mr-2">💼</span> <strong>Work Rights:</strong> Up to 3 years open visa</li>
                 </ul>
             </div>
         </div>
@@ -145,74 +239,134 @@
 </section>
 
 <!-- Process Section -->
-<section id="process" class="py-20 bg-brand-light">
+<section id="process" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">How We Help You Get There</h2>
-            <p class="text-gray-600">A structured roadmap from profile profiling to landing your dream university offer.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-brand-black mb-4">How We Help You Get There</h2>
+            <p class="text-gray-600">A structured roadmap from profiling to landing your dream university offer.</p>
         </div>
 
         <div class="grid md:grid-cols-4 gap-8 relative">
-            <div class="bg-white p-6 rounded-2xl shadow-sm relative">
-                <span class="text-4xl font-black text-blue-100 absolute top-4 right-6">01</span>
-                <h4 class="text-lg font-bold text-brand-blue mb-2 mt-4">Profile Assessment</h4>
-                <p class="text-sm text-gray-600">We evaluate your academics, financial capabilities, and career choices to find the best fit.</p>
+            <!-- Connecting Line for Desktop -->
+            <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
+
+            <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
+                <span class="text-5xl font-black text-green-100 absolute -top-4 -right-2 opacity-50">01</span>
+                <div class="w-10 h-10 bg-brand-green rounded-full mb-4 flex items-center justify-center text-white font-bold shadow-md">1</div>
+                <h4 class="text-lg font-bold text-brand-black mb-2">Profile Assessment</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">We evaluate your academics, financial capabilities, and career choices to find the best fit.</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm relative">
-                <span class="text-4xl font-black text-blue-100 absolute top-4 right-6">02</span>
-                <h4 class="text-lg font-bold text-brand-blue mb-2 mt-4">Shortlisting & SOP</h4>
-                <p class="text-sm text-gray-600">University selection alongside rigorous editorial review of your Statements of Purpose.</p>
+            <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
+                <span class="text-5xl font-black text-green-100 absolute -top-4 -right-2 opacity-50">02</span>
+                <div class="w-10 h-10 bg-brand-black rounded-full mb-4 flex items-center justify-center text-white font-bold shadow-md">2</div>
+                <h4 class="text-lg font-bold text-brand-black mb-2">Shortlisting & SOP</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">University selection alongside rigorous editorial review of your Statements of Purpose.</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm relative">
-                <span class="text-4xl font-black text-blue-100 absolute top-4 right-6">03</span>
-                <h4 class="text-lg font-bold text-brand-blue mb-2 mt-4">Application Filing</h4>
-                <p class="text-sm text-gray-600">We handle the documentation and submit complete portfolios error-free directly to university panels.</p>
+            <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
+                <span class="text-5xl font-black text-green-100 absolute -top-4 -right-2 opacity-50">03</span>
+                <div class="w-10 h-10 bg-brand-black rounded-full mb-4 flex items-center justify-center text-white font-bold shadow-md">3</div>
+                <h4 class="text-lg font-bold text-brand-black mb-2">Application Filing</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">We handle the documentation and submit complete portfolios error-free to university panels.</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm relative">
-                <span class="text-4xl font-black text-blue-100 absolute top-4 right-6">04</span>
-                <h4 class="text-lg font-bold text-brand-blue mb-2 mt-4">Visa & Pre-Departure</h4>
-                <p class="text-sm text-gray-600">Mock visa interviews, absolute document verification, and block account setups.</p>
+            <div class="bg-brand-light p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative border border-green-50">
+                <span class="text-5xl font-black text-green-100 absolute -top-4 -right-2 opacity-50">04</span>
+                <div class="w-10 h-10 bg-brand-green rounded-full mb-4 flex items-center justify-center text-white font-bold shadow-md">4</div>
+                <h4 class="text-lg font-bold text-brand-black mb-2">Visa & Pre-Departure</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">Mock visa interviews, absolute document verification, and block account setups.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-24 bg-brand-black text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-12">Success Stories</h2>
+
+        <!-- Alpine.js Carousel Logic -->
+        <div x-data="{ activeSlide: 1, slides: [1, 2, 3], loop() { setInterval(() => { this.activeSlide = this.activeSlide === this.slides.length ? 1 : this.activeSlide + 1 }, 5000) } }"
+             x-init="loop()"
+             class="relative max-w-4xl mx-auto bg-gray-900 rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-800">
+
+            <!-- Slide 1 -->
+            <div x-show="activeSlide === 1" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12">
+                <p class="text-xl md:text-2xl text-gray-300 italic mb-8 font-light leading-relaxed">"EduGaley made my transition to Germany seamless. From blocking my account to the visa interview prep, they handled everything. I'm now studying at TU Munich!"</p>
+                <h4 class="font-bold text-brand-green text-lg">Rahul Sharma</h4>
+                <p class="text-sm text-gray-500">MS in Computer Science, TU Munich 🇩🇪</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div x-show="activeSlide === 2" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12" style="display: none;">
+                <p class="text-xl md:text-2xl text-gray-300 italic mb-8 font-light leading-relaxed">"I was confused between Australia and Canada. The counselors mapped out the ROI and PR pathways clearly. Highly recommend their transparent approach."</p>
+                <h4 class="font-bold text-brand-green text-lg">Priya Patel</h4>
+                <p class="text-sm text-gray-500">Master of Data Science, UNSW 🇦🇺</p>
+            </div>
+
+            <!-- Slide 3 -->
+            <div x-show="activeSlide === 3" x-transition.opacity.duration.500ms class="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12" style="display: none;">
+                <p class="text-xl md:text-2xl text-gray-300 italic mb-8 font-light leading-relaxed">"Got my F1 Visa approved in the very first attempt! Their mock interview sessions were exactly like the real thing at the Mumbai consulate."</p>
+                <h4 class="font-bold text-brand-green text-lg">Aditya Verma</h4>
+                <p class="text-sm text-gray-500">MBA, Boston University 🇺🇸</p>
+            </div>
+
+            <!-- Invisible spacer to maintain height -->
+            <div class="invisible flex flex-col items-center justify-center">
+                <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Placeholder text to maintain container height so the layout doesn't jump. Make this as long as your longest testimonial."</p>
+                <h4 class="font-bold text-lg">Name</h4>
+                <p class="text-sm">Subtitle</p>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="flex justify-center space-x-3 mt-4 relative z-10">
+                <template x-for="slide in slides">
+                    <button @click="activeSlide = slide"
+                            :class="{'bg-brand-green w-8': activeSlide === slide, 'bg-gray-700 w-3 hover:bg-gray-500': activeSlide !== slide}"
+                            class="h-3 rounded-full transition-all duration-300 focus:outline-none"></button>
+                </template>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Contact Form Section -->
-<section id="contact" class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-brand-blue text-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
-            <div class="relative z-10 grid md:grid-cols-5 gap-8 items-center">
+<section id="contact" class="py-24 bg-brand-light">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-brand-black text-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden border border-gray-800 transform hover:shadow-brand-green/10 transition-shadow duration-500">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-green rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
+
+            <div class="relative z-10 grid md:grid-cols-5 gap-12 items-center">
                 <div class="md:col-span-2">
-                    <h2 class="text-3xl font-extrabold mb-4">Start Your Journey Today</h2>
-                    <p class="text-blue-100 text-sm leading-relaxed mb-6">
+                    <h2 class="text-4xl font-black mb-6 tracking-tight">Start Your <br><span class="text-brand-green">Journey Today</span></h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8">
                         Fill out the profile evaluation form. Our senior counselor will get back to you within 24 working hours to layout your clear pathways.
                     </p>
-                    <div class="text-xs text-blue-200 space-y-2 border-t border-blue-800 pt-6">
-                        <p>📍 Office: Mumbai, India</p>
-                        <p>✉️ Email: contact@yourdomain.com</p>
+                    <div class="text-sm text-gray-300 space-y-4 border-t border-gray-800 pt-8">
+                        <p class="flex items-center"><span class="bg-gray-800 p-2 rounded-lg mr-3">📍</span> Office: Mumbai, India</p>
+                        <p class="flex items-center"><span class="bg-gray-800 p-2 rounded-lg mr-3">✉️</span> contact@edugaley.com</p>
                     </div>
                 </div>
 
-                <div class="md:col-span-3 bg-white text-gray-800 rounded-2xl p-6 sm:p-8 shadow-inner">
+                <div class="md:col-span-3 bg-white text-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl">
                     <!-- Formspree Integration Point -->
-                    <form action="https://formspree.io/f/mlgkqrej" method="POST" class="space-y-4">
+                    <form action="https://formspree.io/f/mlgkqrej" method="POST" class="space-y-5">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Full Name</label>
-                            <input type="text" name="name" required placeholder="Enter student name" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue text-sm transition">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Full Name</label>
+                            <input type="text" name="name" required placeholder="Enter student name" class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green text-sm transition-all duration-300">
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Email Address</label>
-                                <input type="email" name="email" required placeholder="name@domain.com" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue text-sm transition">
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email Address</label>
+                                <input type="email" name="email" required placeholder="name@domain.com" class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green text-sm transition-all duration-300">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Phone Number</label>
-                                <input type="tel" name="phone" required placeholder="10 digit mobile" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue text-sm transition">
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Phone Number</label>
+                                <input type="tel" name="phone" required placeholder="10 digit mobile" class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green text-sm transition-all duration-300">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Preferred Destination</label>
-                            <select name="destination" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue text-sm text-gray-600 transition">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Preferred Destination</label>
+                            <select name="destination" class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green text-sm text-gray-700 transition-all duration-300">
                                 <option value="USA">United States (USA)</option>
                                 <option value="Australia">Australia</option>
                                 <option value="Germany">Germany</option>
@@ -221,10 +375,10 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Current Academic Level / Background</label>
-                            <input type="text" name="background" placeholder="e.g. B.Tech 3rd Year / 12th Commerce" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue text-sm transition">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Academic Background</label>
+                            <input type="text" name="background" placeholder="e.g. B.Tech 3rd Year / 12th Commerce" class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green text-sm transition-all duration-300">
                         </div>
-                        <button type="submit" class="w-full bg-brand-orange text-white text-center font-bold py-4 rounded-xl hover:bg-orange-700 transition tracking-wide shadow-md shadow-orange-600/30">
+                        <button type="submit" class="w-full bg-brand-green text-white text-center font-bold py-4 rounded-xl hover:bg-emerald-600 transition-all duration-300 tracking-wide shadow-lg shadow-brand-green/30 transform active:scale-95 mt-2">
                             Request Free Evaluation
                         </button>
                     </form>
@@ -235,10 +389,15 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-950 text-gray-400 py-8 border-t border-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-        <p>&copy; 2026 EduGaley. All Rights Reserved.</p>
-        <p class="text-xs text-gray-600 mt-2">Designed cleanly for modern static performance.</p>
+<footer class="bg-[#050505] text-gray-500 py-10 border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="mb-4 md:mb-0">
+            <span class="text-xl font-bold text-white tracking-tight">Edu<span class="text-brand-green">Galey</span></span>
+        </div>
+        <div class="text-center md:text-right">
+            <p>&copy; 2026 EduGaley. All Rights Reserved.</p>
+            <p class="text-xs text-gray-600 mt-1">Designed cleanly for modern static performance.</p>
+        </div>
     </div>
 </footer>
 
